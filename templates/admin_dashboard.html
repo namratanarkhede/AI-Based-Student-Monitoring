@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin Dashboard</title>
+	<style>
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		.container {
+			display: flex;
+		}
+
+		/* Sidebar styling */
+		.sidebar {
+			height: 100vh;
+			width: 250px;
+			background-color: #333;
+			color: #fff;
+			padding: 20px;
+			position: fixed;
+			left: 0;
+			top: 0;
+		}
+		
+
+		.sidebar a {
+			display: block;
+			padding-top:50px;
+			color: #fff;
+			padding: 15px;
+			text-decoration: none;
+			font-size: 18px;
+		}
+
+		.sidebar a:hover {
+			background-color: #555;
+		}
+
+		/* Main content styling */
+		.main {
+			width: 75%;
+			margin-left: 300px;
+			margin-top:20px;
+			padding: 30px;
+			background-color: #f2f2f2;
+			border: 1px solid #ccc;
+			border-radius: 10px;
+			box-shadow: 0 0 10px #ccc;
+		  }
+		.main h2 {
+			margin-top:20px;
+		}
+		table {
+		  width: 100%;
+		  border-collapse: collapse;
+		  margin-bottom: 20px;
+		}
+		
+		table th, table td {
+		  padding: 10px;
+		  border: 1px solid #ccc;
+		}
+		
+		table th {
+		  background-color: #ddd;
+		  font-weight: bold;
+		  text-align: left;
+		}
+		
+		table tr:nth-child(even) {
+		  background-color: #f2f2f2;
+		}
+		
+		table tr:hover {
+		  background-color: #ddd;
+		}
+		.button {
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 10px 20px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+			border-radius: 5px;
+		}
+		
+
+	</style>
+</head>
+<body>
+	<div class="container">
+	
+		<div class="sidebar">
+			<h2>Admin Dashboard</h2>
+			<a href="{{ url_for('admin_dashboard') }}">Student Info</a>
+			<a href="{{ url_for('studentattendance') }}">Attendance of Student</a>
+			<a href="{{ url_for('overall_attendance') }}">Overall Attendance</a>
+			<a href="{{ url_for('visualize') }}">Visualize Attendance</a>
+			<a href="{{ url_for('send_mail') }}">Send Mail</a>
+			<form method="post" action="/logout">
+				<input class="button logout" type="submit" value="Logout">
+			</form>
+		</div>
+		<div class="main">
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Moodle ID</th>
+					<th>Email ID</th>
+					<th>Parent's Email</th>
+					<th>Contact Number</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for student in students %}
+				<tr>
+					<td>{{ student[0] }}</td>
+					<td>{{ student[1] }}</td>
+					<td>{{ student[2] }}</td>
+					<td>{{ student[3] }}</td>
+					<td>{{ student[4] }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+	</div>
+</body>
+</html>

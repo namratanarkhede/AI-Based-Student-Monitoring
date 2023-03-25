@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AI-based Student Monitoring</title>
+    <style>
+      /* General styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      
+      body {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+        background-color: #333;
+      }
+      
+      /* Header styles */
+      header {
+        background-color: #f2f2f2;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .site-name {
+        font-size: 24px;
+        font-weight: bold;
+        padding-left:30px;
+      }
+      
+      /* Navigation styles */
+      nav {
+        display: flex;
+        align-items: center;
+      }
+      
+      nav ul {
+        list-style: none;
+        display: flex;
+      }
+      
+      nav li {
+        margin-left: 20px;
+      }
+      
+      nav a {
+        text-decoration: none;
+        color: #333;
+        transition: all 0.2s ease-in-out;
+      }
+      
+      nav a:hover {
+        color: #fff;
+        background-color: #333;
+        padding: 10px;
+        border-radius: 5px;
+      }
+      
+      /* Main content styles */
+      main {
+        margin: 0 auto;
+        padding:50px;
+        background-color: #fff;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url("https://d1sr9z1pdl3mb7.cloudfront.net/wp-content/uploads/2022/03/07162020/synthetic-data-1024x640.jpg");
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        padding-left:90px;
+      }
+      
+      main h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+        color:#fff;
+        text-align: left;
+
+      }
+      
+      main p {
+        margin-bottom: 20px;
+        text-align: left;
+        color:#fff;
+        padding-right:900px;
+      }
+      /* Responsive styles */
+      @media screen and (max-width: 768px) {
+        header {
+          flex-direction: column;
+          text-align: center;
+        }
+        
+        .site-name {
+          margin-bottom: 10px;
+        }
+        
+        nav {
+          margin-top: 20px;
+        }
+        
+        nav ul {
+          flex-direction: column;
+        }
+        
+        nav li {
+          margin-left: 0;
+          margin-bottom: 10px;
+        }
+      }
+
+      .container {
+        max-width: 100%%;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+    }
+
+    h1 {
+        font-size: 36px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .team {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .member {
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        margin: 20px;
+        width: 300px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .member:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+
+    .member img {
+        border-radius: 50%;
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        margin-bottom: 20px;
+    }
+
+    .member h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: #333;
+    }
+
+    .member p {
+        color: #666;
+        margin-bottom: 10px;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+
+    .member .social {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .member .social a {
+        display: inline-block;
+        margin: 0 10px;
+        color: #333;
+        transition: all 0.3s ease;
+    }
+
+    .member .social a:hover {
+        color: #555;
+    }
+
+    .footer {
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .footer p {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .footer a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+    .footer a:hover {
+        text-decoration: underline;
+    }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <h1 class="site-name">AI-Based Student Monitoring</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="{{ url_for('studentform') }}">Student Form</a></li>
+          {% if session.admin_logged_in %}
+          <li><a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a></li>
+          <li><a href="{{ url_for('logout') }}">Logout</a></li>
+          {% else %}
+          <li><a href="{{ url_for('admin_login') }}">Admin Login</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </header>
+    
+    <!-- Main content -->
+    <main>
+      <h1>Welcome !!!!</h1>
+      <div class="box1">
+      <p>
+        Our AI-based student monitoring system helps schools and universities keep track of student performance and behavior. By analyzing data from various sources such as attendance records, test scores, and even social media activity, our system can identify at-risk students and provide early interventions to help them succeed.
+      </p></br>
+      <p>
+        With our system, schools can also monitor for incidents such as cyberbullying and potential security threats. Our platform is customizable to fit the unique needs of each institution and can be integrated with existing systems and tools.
+      </p></br>
+      <p>
+        Contact us today to learn more about how AI-based student monitoring can benefit your school or university.
+      </p></br></br>
+    </div>
+    </main>
+    <div class="container">
+      <h1>Our Team</h1>
+      <div class="team">
+        <div class="member">
+          <img src="/images/namrata.jpg" alt="Member 1">
+          <h3>Namrata Narkhede</h3>
+          <p>APSIT | TE</p>
+        </div>
+        <div class="member">
+          <img src="/images/namrata.jpg" alt="Member 2">
+          <h3>Anupama Menon</h3>
+          <p>APSIT | TE</p>
+        </div>
+        <div class="member">
+          <img src="/images/namrata.jpg" alt="Member 3">
+          <h3>Sayali Nikam</h3>
+          <p>APSIT | TE</p>
+        </div>
+        <div class="member">
+          <img src="/images/namrata.jpg" alt="Member 4">
+          <h3>Itisha Mathane</h3>
+          <p>APSIT | TE</p>
+        </div>
+      </div>
+    </div>
+ 
+  
+    <footer class="footer">
+      <p>&copy; 2023 Company Name. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+    </footer>
+
+  
+
+  </body>
+</html>
