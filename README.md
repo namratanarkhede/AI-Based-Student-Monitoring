@@ -31,5 +31,23 @@ main.py and app.py
 To use the system, simply log in to the interactive dashboard using your credentials. From there, you can view data of student, real-time attendance, student attendance performance. You can also customize notifications and alerts to receive updates on any potential issues.
 
 # UI
-
+1. Main Page 
 ![mainpage](https://user-images.githubusercontent.com/78205518/229305875-0f7e5e12-ff0d-400a-9994-7c6501d0e6de.png)
+2. Face Recognition Based attendance 
+![fillAttendanceModule](https://user-images.githubusercontent.com/78205518/229306786-a3ca393a-61bc-475c-a309-b68333f1f34e.png)
+3. Web-App page 
+![appModule](https://user-images.githubusercontent.com/78205518/229306794-c94277c8-ccfc-4a9c-a87e-869e6e257dbd.png)
+4. Student Form Page 
+![studentformModule](https://user-images.githubusercontent.com/78205518/229306801-995ada42-ac08-4f57-8f6b-e1877040a017.png)
+5. Admin Page 
+![AdminModule](https://user-images.githubusercontent.com/78205518/229306804-b7d0e20d-17d0-4282-aeb9-8f3466af3e66.png)
+6. Subject_wise Attedance Page 
+![Subject_wise Attedance Module](https://user-images.githubusercontent.com/78205518/229306817-5bf366b3-c0fc-4ec6-9e79-fbaeda3ea810.png)
+![Subject-Wise AttendaneModule](https://user-images.githubusercontent.com/78205518/229306819-b033fbdd-1a44-4b9c-aaa0-9530f43c0e2e.png)
+7. Overall Attendance Page 
+![OverallAttendance Module](https://user-images.githubusercontent.com/78205518/229306828-e1972687-6ce2-48c5-ac85-7fe983b5e1da.png)
+8. Visualize Attendance Page 
+![VisulizeModule](https://user-images.githubusercontent.com/78205518/229306840-3286b08f-b788-43a8-a7e0-dc1469a7744f.png)
+9. Send Email Page 
+![EmailSend Module](https://user-images.githubusercontent.com/78205518/229306842-eefbdbb8-39ef-44ea-a03f-58e71fe52061.png)
+
