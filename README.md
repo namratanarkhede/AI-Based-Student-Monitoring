@@ -40,7 +40,7 @@ To use the system, simply log in to the interactive dashboard using your credent
 4. Student Form Page 
 
 5. Admin Page 
-
+![AdminModule](https://user-images.githubusercontent.com/78205518/229307276-a2ae4bd5-5f04-4ccb-88d2-bce63287d496.png)
 6. Subject_wise Attedance Page 
 ![Subject_wise Attedance Module](https://user-images.githubusercontent.com/78205518/229306817-5bf366b3-c0fc-4ec6-9e79-fbaeda3ea810.png)
 ![Subject-Wise AttendaneModule](https://user-images.githubusercontent.com/78205518/229306819-b033fbdd-1a44-4b9c-aaa0-9530f43c0e2e.png)
