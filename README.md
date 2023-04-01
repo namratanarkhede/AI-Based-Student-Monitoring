@@ -17,15 +17,15 @@ To install the AI-based student monitoring system, follow these steps
 git clone https://github.com/namratanarkhede/AI-Based-Student-Monitoring.git
 2. Navigate to the project directory:<br>
 cd AI-Based-Student-Monitoring/
-3. Create a virtual environment:
+3. Create a virtual environment:<br>
 python3 -m venv env
-4. Activate the virtual environment:
+4. Activate the virtual environment:<br>
 source env/bin/activate
-5. Change path where needed:
+5. Change path where needed:<br>
 main.py and app.py
-6. Run AI-Based-Student-Monitoring:
-To take attendance by Face-recognition: Run main.py
-To Analysis the attendance: Run app.py
+6. Run AI-Based-Student-Monitoring:<br>
+  To take attendance by Face-recognition: <br> Run main.py<br>
+  To Analysis the attendance:<br> Run app.py
 
 # Usage
 To use the system, simply log in to the interactive dashboard using your credentials. From there, you can view data of student, real-time attendance, student attendance performance. You can also customize notifications and alerts to receive updates on any potential issues.
