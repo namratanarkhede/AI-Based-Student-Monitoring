@@ -38,7 +38,7 @@ To use the system, simply log in to the interactive dashboard using your credent
 3. Web-App page 
 ![appModule](https://user-images.githubusercontent.com/78205518/229306794-c94277c8-ccfc-4a9c-a87e-869e6e257dbd.png)
 4. Student Form Page 
-![studentformModule](https://user-images.githubusercontent.com/78205518/229306801-995ada42-ac08-4f57-8f6b-e1877040a017.png)
+
 5. Admin Page 
 
 6. Subject_wise Attedance Page 
