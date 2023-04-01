@@ -1,158 +1,168 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Admin Dashboard</title>
-	<style>
-		/* General styles */
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-  padding: 0;
-}
+  <head>
+    <title>Admin Dashboard</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
 
-.container {
-  display: flex;
-}
+      .container {
+        display: flex;
+      }
 
-/* Sidebar styling */
-.sidebar {
-  height: 100vh;
-  width: 250px;
-  background-color: #333;
-  color: #fff;
-  padding: 20px;
-  position: fixed;
-  left: 0;
-  top: 0;
-}
+      /* Sidebar styling */
+      .sidebar {
+        height: 100vh;
+        width: 250px;
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+        position: fixed;
+        left: 0;
+        top: 0;
+      }
 
-.sidebar a {
-  display: block;
-  padding-top: 50px;
-  color: #fff;
-  padding: 15px;
-  text-decoration: none;
-  font-size: 18px;
-}
+      .sidebar a {
+        display: block;
+        color: #fff;
+        padding: 15px;
+        text-decoration: none;
+        font-size: 18px;
+      }
 
-.sidebar a:hover {
-  background-color: #555;
-}
+      .sidebar a:hover {
+        background-color: #555;
+      }
 
-/* Main content styling */
-.main {
-  margin-left: 300px;
-  padding: 20px;
-  width:100%;
-}
+      /* Main content styling */
+      .main h2 {
+        margin-top: 20px;
+      }
+      #logout-btn {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
 
-.main h2 {
-  margin-top: 0;
-}
+      #logout-btn:hover {
+        background-color: #555;
+      }
+      .main {
+        width: 75%;
+        margin-left: 315px;
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #ccc;
+      }
 
-.button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 5px;
-}
+      .main h1 {
+        font-size: 36px;
+        text-align: center;
+        margin-bottom: 20px;
+      }
 
-/* Form styling */
-form {
-	
-	flex-direction: column;
-	margin-top: 30px;
-  }
+      /* Form styling */
+      form #common-form {
+        flex-direction: column;
+        margin-top: 30px;
+      }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-}
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
 
-input[type="number"] {
-  border: none;
-  margin-bottom: 10px;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-bottom: 20px;
-  width: 30%;
-  box-sizing: border-box;
-}
+      input[type="number"] {
+        border: none;
+        margin-bottom: 10px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        width: 30%;
+        box-sizing: border-box;
+      }
 
-button[type="submit"],
-button[type="button"] {
-  padding: 10px 20px;
-  border: none;
-  color: #fff;
-  background-color: #4CAF50;
-  cursor: pointer;
-  border-radius: 5px;
-  margin-right: 10px;
-}
+      button[type="submit"],
+      button[type="button"] {
+        padding: 10px 20px;
+        border: none;
+        color: #fff;
+        background-color: #4caf50;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-right: 10px;
+      }
 
-button[type="submit"]:hover,
-button[type="button"]:hover {
-  background-color: #555;
-}
+      button[type="submit"]:hover,
+      button[type="button"]:hover {
+        background-color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar">
+        <h2>Admin Dashboard</h2>
+        <a href="{{ url_for('admin_dashboard') }}">Student Info</a>
+        <a href="{{ url_for('studentattendance') }}">Attendance of Student</a>
+        <a href="{{ url_for('overall_attendance') }}">Overall Attendance</a>
+        <a href="{{ url_for('visualize') }}">Visualize Attendance</a>
+        <a href="{{ url_for('send_mail') }}">Send Mail</a>
+        <form method="post" action="/logout">
+          <input
+            id="logout-btn"
+            class="button logout"
+            type="submit"
+            value="Logout"
+          />
+        </form>
+      </div>
 
+      <div class="main">
+        <h1>Subject-Wise Attendance</h1>
+        <h2>Subject Name : SPCC</h2>
+        <form id="common-form" method="POST" action="{{ url_for('spcc') }}">
+          <label for="total_classes">Total Classes:</label>
+          <input type="number" name="total_classes" required />
+          <button type="submit">Analysis of Attendance</button>
+        </form>
 
-	</style>
-</head>
-<body>
-	<div class="container">
-	
-		<div class="sidebar">
-			<h2>Admin Dashboard</h2>
-			<a href="{{ url_for('admin_dashboard') }}">Student Info</a>
-			<a href="{{ url_for('studentattendance') }}">Attendance of Student</a>
-			<a href="{{ url_for('overall_attendance') }}">Overall Attendance</a>
-			<a href="{{ url_for('visualize') }}">Visualize Attendance</a>
-      <a href="{{ url_for('send_mail') }}">Send Mail</a>
-			<form method="post" action="/logout">
-				<input class="button logout" type="submit" value="Logout">
-			</form>
-		</div>
+        <h2>Subject Name : CSS</h2>
+        <form id="common-form" method="POST" action="{{ url_for('css') }}">
+          <label for="total_classes">Total Classes:</label>
+          <input type="number" name="total_classes" required />
+          <button type="submit">Analysis of Attendance</button>
+        </form>
 
-		
-		<div class="main">
-			<h1>Subject Name : SPCC</h1>
-			<form method="POST" action="{{ url_for('spcc') }}">
-			<label for="total_classes">Total Classes:</label>
-			<input type="number" name="total_classes" required>
-			<button type="submit">Analysis of Attendance</button>
-			</form>
+        <h2>Subject Name : AI</h2>
+        <form id="common-form" method="POST" action="{{ url_for('ai') }}">
+          <label for="total_classes">Total Classes:</label>
+          <input type="number" name="total_classes" required />
+          <button type="submit">Analysis of Attendance</button>
+        </form>
 
-
-			<h1>Subject Name : CSS</h1>
-			<form method="POST" action="{{ url_for('css') }}">
-			<label for="total_classes">Total Classes:</label>
-			<input type="number" name="total_classes" required>
-			<button type="submit">Analysis of Attendance</button>
-			</form>
-
-			<h1>Subject Name : AI</h1>
-			<form method="POST" action="{{ url_for('ai') }}">
-			<label for="total_classes">Total Classes:</label>
-			<input type="number" name="total_classes" required>
-			<button type="submit">Analysis of Attendance</button>
-			</form>
-
-			<h1>Subject Name : MC</h1>
-			<form method="POST" action="{{ url_for('mc') }}">
-			<label for="total_classes">Total Classes:</label>
-			<input type="number" name="total_classes" required>
-			<button type="submit">Analysis of Attendance</button>
-			</form>
-
-	</div>
-	</div>
-</body>
+        <h2>Subject Name : MC</h2>
+        <form id="common-form" method="POST" action="{{ url_for('mc') }}">
+          <label for="total_classes">Total Classes:</label>
+          <input type="number" name="total_classes" required />
+          <button type="submit">Analysis of Attendance</button>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>

@@ -7,14 +7,14 @@
 			font-family: Arial, Helvetica, sans-serif;
 			margin: 0;
 			padding: 0;
-		}
-
-		.container {
+		  }
+		  
+		  .container {
 			display: flex;
-		}
-
-		/* Sidebar styling */
-		.sidebar {
+		  }
+		  
+		  /* Sidebar styling */
+		  .sidebar {
 			height: 100vh;
 			width: 250px;
 			background-color: #333;
@@ -23,73 +23,122 @@
 			position: fixed;
 			left: 0;
 			top: 0;
-		}
-		
-
-		.sidebar a {
+		  }
+		  
+		  .sidebar a {
 			display: block;
-			padding-top:50px;
+			padding-top: 50px;
 			color: #fff;
 			padding: 15px;
 			text-decoration: none;
 			font-size: 18px;
-		}
-
-		.sidebar a:hover {
+		  }
+		  
+		  .sidebar a:hover {
 			background-color: #555;
-		}
-
-		/* Main content styling */
-		.main {
+		  }
+		  
+		  /* Main content styling */
+		  .main {
 			width: 75%;
-			margin-left: 300px;
-			margin-top:20px;
+			margin-left: 315px;
+			margin-top: 20px;
 			padding: 30px;
 			background-color: #f2f2f2;
 			border: 1px solid #ccc;
 			border-radius: 10px;
 			box-shadow: 0 0 10px #ccc;
 		  }
-		.main h2 {
-			margin-top:20px;
-		}
-		table {
-		  width: 100%;
-		  border-collapse: collapse;
-		  margin-bottom: 20px;
-		}
-		
-		table th, table td {
-		  padding: 10px;
-		  border: 1px solid #ccc;
-		}
-		
-		table th {
-		  background-color: #ddd;
-		  font-weight: bold;
-		  text-align: left;
-		}
-		
-		table tr:nth-child(even) {
-		  background-color: #f2f2f2;
-		}
-		
-		table tr:hover {
-		  background-color: #ddd;
-		}
-		.button {
-			background-color: #4CAF50;
-			border: none;
-			color: white;
-			padding: 10px 20px;
+		  
+		  .main h2 {
+			margin-top: 20px;
+		  }
+		  
+		  .main h1 {
+			font-size: 36px;
 			text-align: center;
-			text-decoration: none;
-			display: inline-block;
+			margin-bottom: 20px;
+		  }
+		  
+		  form #common-form{
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+		  }
+		  
+		  input[type="text"] {
+			margin: 0 10px;
+			transition: all 0.3s;
 			font-size: 16px;
-			margin: 4px 2px;
-			cursor: pointer;
-			border-radius: 5px;
-		}
+			width: 170px;
+			padding: 5px;
+		  }
+		  
+		  input[type="text"]:focus {
+			outline: none;
+			border-bottom: 2px solid #1E90FF;
+		  }
+	
+		  
+		  table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-bottom: 15px;
+		  }
+		  
+		  table th,
+		  table td {
+			padding: 10px;
+			border: 1px solid #ccc;
+		  }
+		  
+		  table th {
+			background-color: #ddd;
+			font-weight: bold;
+			text-align: left;
+		  }
+		  
+		  table tr:nth-child(even) {
+			background-color: #f2f2f2;
+		  }
+		  
+		  table tr:hover {
+			background-color: #ddd;
+		  }
+		  #add-student-btn{
+				background-color: #4caf50;
+				border: none;
+				color: white;
+				padding: 10px 20px;
+				text-align: center;
+				text-decoration: none;
+				display: inline-block;
+				font-size: 16px;
+				margin: 4px 2px;
+				cursor: pointer;
+				border-radius: 5px;
+		  }
+		  #update-student-btn,
+		  #delete-student-btn,
+		  #logout-btn {
+			background-color: #4caf50;
+        	border: none;
+        	color: white;
+        	padding: 10px 20px;
+        	text-align: center;
+        	text-decoration: none;
+        	display: inline-block;
+        	font-size: 16px;
+        	margin: 4px 2px;
+        	cursor: pointer;
+        	border-radius: 5px;
+		  }
+
+		  #logout-btn:hover {
+			background-color: #555;
+		  }
+		
 		
 
 	</style>
@@ -105,33 +154,58 @@
 			<a href="{{ url_for('visualize') }}">Visualize Attendance</a>
 			<a href="{{ url_for('send_mail') }}">Send Mail</a>
 			<form method="post" action="/logout">
-				<input class="button logout" type="submit" value="Logout">
+				<input id="logout-btn" class="button logout" type="submit" value="Logout">
 			</form>
 		</div>
 		<div class="main">
-		<table>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Moodle ID</th>
-					<th>Email ID</th>
-					<th>Parent's Email</th>
-					<th>Contact Number</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for student in students %}
-				<tr>
-					<td>{{ student[0] }}</td>
-					<td>{{ student[1] }}</td>
-					<td>{{ student[2] }}</td>
-					<td>{{ student[3] }}</td>
-					<td>{{ student[4] }}</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-	</div>
+			<h1>Student Information</h1>
+			<form id="common-form" method="POST" action="{{ url_for('add_student') }}">
+				<input type="text" name="name" placeholder="Name">
+				<input type="text" name="moodle_id" placeholder="Moodle ID">
+				<input type="text" name="email" placeholder="Email">
+				<input type="text" name="parent_email" placeholder="Parent's Email">
+				<input type="text" name="contact_number" placeholder="Contact Number">
+				<button type="submit" id="add-student-btn">Add Student</button>
+			</form>
+		</br>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Moodle ID</th>
+						<th>Email ID</th>
+						<th>Parent's Email</th>
+						<th>Contact Number</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for student in students %}
+					<tr>
+						<form id="common-form" method="POST" action="{{ url_for('update_student', id=student[1]) }}">
+							<td><input type="text" name="name" value="{{ student[0] }}"></td>
+							<td>{{ student[1] }}</td>
+							<td><input type="text" name="email" value="{{ student[2] }}"></td>
+							<td><input type="text" name="parent_email" value="{{ student[3] }}"></td>
+							<td><input type="text" name="contact_number" value="{{ student[4] }}"></td>
+							<td>
+								<button type="submit" id="update-student-btn" >Update</button>
+							</form>
+							<form id="common-form" method="POST" action="{{ url_for('delete_student', id=student[1]) }}">
+								<button type="submit" id="delete-student-btn">Delete</button>
+							</form>
+						</td>
+					</tr>
+
+					{% endfor %}
+				</tbody>
+			</table>
+			
+		</div>
+		
+		
 	</div>
 </body>
 </html>
+
+

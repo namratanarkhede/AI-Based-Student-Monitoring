@@ -18,8 +18,9 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 app = Flask(__name__)
 app.secret_key = 'mysecretkey'
 
-
 ############################## HOME PAGE ################################
+
+
 @app.route('/', methods=['GET'])
 def home():
     if 'admin' in session:
@@ -42,9 +43,8 @@ def studentform():
         conn = pymysql.connect(host='localhost', user='root', password='',
                                database='ai_based_student_monitoring', port=3307)
         cur = conn.cursor()
-        cur.execute(
-            'INSERT INTO student_info (name, moodle_id, email, parent_email, contact_number) VALUES (%s, %s, %s, %s, %s)',
-            (name, moodle_id, email, parent_email, contact_number))
+        cur.execute('INSERT INTO student_info (name, moodle_id, email, parent_email, contact_number) VALUES (%s, %s, %s, %s, %s)',
+                    (name, moodle_id, email, parent_email, contact_number))
         conn.commit()
         cur.close()
         conn.close()
@@ -55,7 +55,8 @@ def studentform():
         file_path = 'studentdetails.csv'
         file_exists = os.path.isfile(file_path)
         with open(file_path, 'a', newline='') as csv_file:
-            fieldnames = ['Name', 'Moodle ID', 'Email ID', "Parent's Email", 'Contact Number']
+            fieldnames = ['Name', 'Moodle ID', 'Email ID',
+                          "Parent's Email", 'Contact Number']
             writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
             if not file_exists:
                 writer.writeheader()
@@ -91,8 +92,8 @@ def admin_dashboard():
     if not session.get('admin_logged_in'):
         return redirect(url_for('admin_login'))
 
-    conn = pymysql.connect(host='localhost', user='root', password='', database='ai_based_student_monitoring',
-                           port=3307)
+    conn = pymysql.connect(host='localhost', user='root', password='',
+                           database='ai_based_student_monitoring', port=3307)
 
     cursor = conn.cursor()
 
@@ -102,6 +103,73 @@ def admin_dashboard():
     conn.close()
 
     return render_template('admin_dashboard.html', students=data)
+
+
+@app.route('/add_student', methods=['POST'])
+def add_student():
+    # check if admin is logged in
+    if not session.get('admin_logged_in'):
+        return redirect(url_for('admin_login'))
+
+    name = request.form['name']
+    moodle_id = request.form['moodle_id']
+    email = request.form['email']
+    parent_email = request.form['parent_email']
+    contact_number = request.form['contact_number']
+
+    conn = pymysql.connect(host='localhost', user='root', password='',
+                           database='ai_based_student_monitoring', port=3307)
+
+    cursor = conn.cursor()
+
+    cursor.execute('INSERT INTO student_info (name, moodle_id, email, parent_email, contact_number) VALUES (%s, %s, %s, %s, %s)',
+                   (name, moodle_id, email, parent_email, contact_number))
+
+    conn.commit()
+    conn.close()
+
+    return redirect(url_for('admin_dashboard'))
+
+
+@app.route('/update_student/<id>', methods=['POST'])
+def update_student(id):
+    # check if admin is logged in
+    if not session.get('admin_logged_in'):
+        return redirect(url_for('admin_login'))
+
+    # get form data
+    name = request.form['name']
+    email = request.form['email']
+    parent_email = request.form['parent_email']
+    contact_number = request.form['contact_number']
+
+    # update student info in the database
+    conn = pymysql.connect(host='localhost', user='root', password='',
+                           database='ai_based_student_monitoring', port=3307)
+    cursor = conn.cursor()
+    cursor.execute('UPDATE student_info SET name=%s, email=%s, parent_email=%s, contact_number=%s WHERE moodle_id=%s',
+                   (name, email, parent_email, contact_number, id))
+    conn.commit()
+    conn.close()
+
+    return redirect(url_for('admin_dashboard'))
+
+
+@app.route('/delete_student/<id>', methods=['POST'])
+def delete_student(id):
+    # check if admin is logged in
+    if not session.get('admin_logged_in'):
+        return redirect(url_for('admin_login'))
+
+    # delete student info from the database
+    conn = pymysql.connect(host='localhost', user='root', password='',
+                           database='ai_based_student_monitoring', port=3307)
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM student_info WHERE moodle_id=%s', id)
+    conn.commit()
+    conn.close()
+
+    return redirect(url_for('admin_dashboard'))
 
 
 @app.route('/logout', methods=['POST'])
@@ -119,43 +187,63 @@ def studentattendance():
 ############################## SPCC SUBJECT ################################
 @app.route('/spcc', methods=['POST'])
 def spcc():
-    # Create an empty dataframe
-    attendance_df = pd.DataFrame(columns=["Enrollment", "Name", "Count", "Total Classes", "Percentage"])
-
     # Specify the directory path where the csv files are located
-    csv_dir = "C:/Users/Namrata Narkhede/PycharmProjects/AI-Based Student Monitoring/Attendance_management/Attendance/spcc/"
+    student_details_dir = "C:/Users/Namrata Narkhede/PycharmProjects/AI-Based Student Monitoring/StudentDetails/"
+    spcc_dir = "C:/Users/Namrata Narkhede/PycharmProjects/AI-Based Student Monitoring/Attendance_management/Attendance/spcc/"
 
     # Get a list of all csv files in the directory
-    csv_files = [os.path.join(csv_dir, f) for f in os.listdir(csv_dir) if f.endswith('.csv')]
+    student_details_files = [os.path.join(student_details_dir, f) for f in os.listdir(
+        student_details_dir) if f.endswith('.csv')]
+    spcc_files = [os.path.join(spcc_dir, f)
+                  for f in os.listdir(spcc_dir) if f.endswith('.csv')]
 
     # Loop through each csv file and read it using pandas
     dfs = []
-    for csv_file in csv_files:
+    for csv_file in student_details_files + spcc_files:
         df = pd.read_csv(csv_file)
         dfs.append(df)
 
     # Concatenate the list of dataframes into a single dataframe
     combined_df = pd.concat(dfs)
 
-    # Group the dataframe by "Enrollment" and "Name" and count the number of occurrences of each name
-    grouped_df = combined_df.groupby(["Enrollment", "Name"]).size().reset_index(name="Count")
+    # Group the dataframe by "Enrollment" and count the number of occurrences of each enrollment
+    grouped_df = combined_df.groupby(
+        "Enrollment").size().reset_index(name="Count")
 
     # Subtract 1 from the "Count" column
     grouped_df["Count"] = grouped_df["Count"] - 1
+
+    # Merge the enrollment with their names
+    names_df = combined_df[["Enrollment", "Name"]
+                           ].drop_duplicates().set_index("Enrollment")
+
+    # Merge the count and names dataframes
+    result_df = pd.merge(grouped_df, names_df, on="Enrollment")
 
     # Take user input for the total number of classes that have occurred
     total_classes = int(request.form['total_classes'])
 
     # Add a new column "Total Classes" to the dataframe
-    grouped_df["Total Classes"] = total_classes
+    result_df["Total Classes"] = total_classes
 
     # Calculate the attendance percentage
-    grouped_df["Percentage"] = grouped_df["Count"] / grouped_df["Total Classes"] * 100
+    result_df["Percentage"] = result_df["Count"] / \
+        result_df["Total Classes"] * 100
+
+    # Convert the Enrollment column to integers
+    result_df["Enrollment"] = result_df["Enrollment"].astype(int)
+
+    # Reorder the columns as per the desired format
+    result_df = result_df[['Enrollment', 'Name',
+                           'Count', 'Total Classes', 'Percentage']]
+
+    # Drop the duplicate enrollments to have only one entry per enrollment
+    result_df.drop_duplicates(subset="Enrollment", keep="last", inplace=True)
 
     # Save the final dataframe as a csv file
-    grouped_df.to_csv("attendance_summary_spcc.csv", index=False)
+    result_df.to_csv("attendance_summary_spcc.csv", index=False)
 
-    # Redirect to the table page to display the output
+    # Display the output
     return redirect('/table')
 
 
@@ -171,28 +259,61 @@ def display_table():
 ############################## CSS SUBJECT ################################
 @app.route('/css', methods=['POST'])
 def css():
-    attendance_df = pd.DataFrame(columns=["Enrollment", "Name", "Count", "Total Classes", "Percentage"])
+    # Specify the directory path where the csv files are located
+    student_details_dir = "C:/Users/Namrata Narkhede/PycharmProjects/AI-Based Student Monitoring/StudentDetails/"
+    spcc_dir = "C:/Users/Namrata Narkhede/PycharmProjects/AI-Based Student Monitoring/Attendance_management/Attendance/css/"
 
-    csv_dir = "C:/Users/Namrata Narkhede/PycharmProjects/AI-Based Student Monitoring/Attendance_management/Attendance/css/"
+    # Get a list of all csv files in the directory
+    student_details_files = [os.path.join(student_details_dir, f) for f in os.listdir(
+        student_details_dir) if f.endswith('.csv')]
+    spcc_files = [os.path.join(spcc_dir, f)
+                  for f in os.listdir(spcc_dir) if f.endswith('.csv')]
 
-    csv_files = [os.path.join(csv_dir, f) for f in os.listdir(csv_dir) if f.endswith('.csv')]
-
+    # Loop through each csv file and read it using pandas
     dfs = []
-    for csv_file in csv_files:
+    for csv_file in student_details_files + spcc_files:
         df = pd.read_csv(csv_file)
         dfs.append(df)
 
+    # Concatenate the list of dataframes into a single dataframe
     combined_df = pd.concat(dfs)
 
-    grouped_df = combined_df.groupby(["Enrollment", "Name"]).size().reset_index(name="Count")
+    # Group the dataframe by "Enrollment" and count the number of occurrences of each enrollment
+    grouped_df = combined_df.groupby(
+        "Enrollment").size().reset_index(name="Count")
+
+    # Subtract 1 from the "Count" column
     grouped_df["Count"] = grouped_df["Count"] - 1
 
+    # Merge the enrollment with their names
+    names_df = combined_df[["Enrollment", "Name"]
+                           ].drop_duplicates().set_index("Enrollment")
+
+    # Merge the count and names dataframes
+    result_df = pd.merge(grouped_df, names_df, on="Enrollment")
+
+    # Take user input for the total number of classes that have occurred
     total_classes = int(request.form['total_classes'])
 
-    grouped_df["Total Classes"] = total_classes
-    grouped_df["Percentage"] = grouped_df["Count"] / grouped_df["Total Classes"] * 100
+    # Add a new column "Total Classes" to the dataframe
+    result_df["Total Classes"] = total_classes
 
-    grouped_df.to_csv("attendance_summary_css.csv", index=False)
+    # Calculate the attendance percentage
+    result_df["Percentage"] = result_df["Count"] / \
+        result_df["Total Classes"] * 100
+
+    # Convert the Enrollment column to integers
+    result_df["Enrollment"] = result_df["Enrollment"].astype(int)
+
+    # Reorder the columns as per the desired format
+    result_df = result_df[['Enrollment', 'Name',
+                           'Count', 'Total Classes', 'Percentage']]
+
+    # Drop the duplicate enrollments to have only one entry per enrollment
+    result_df.drop_duplicates(subset="Enrollment", keep="last", inplace=True)
+
+    # Save the final dataframe as a csv file
+    result_df.to_csv("attendance_summary_css.csv", index=False)
 
     return redirect('/table1')
 
@@ -207,28 +328,61 @@ def display_table1():
 ############################## AI SUBJECT ################################
 @app.route('/ai', methods=['POST'])
 def ai():
-    attendance_df = pd.DataFrame(columns=["Enrollment", "Name", "Count", "Total Classes", "Percentage"])
+    # Specify the directory path where the csv files are located
+    student_details_dir = "C:/Users/Namrata Narkhede/PycharmProjects/AI-Based Student Monitoring/StudentDetails/"
+    spcc_dir = "C:/Users/Namrata Narkhede/PycharmProjects/AI-Based Student Monitoring/Attendance_management/Attendance/ai/"
 
-    csv_dir = "C:/Users/Namrata Narkhede/PycharmProjects/AI-Based Student Monitoring/Attendance_management/Attendance/ai/"
+    # Get a list of all csv files in the directory
+    student_details_files = [os.path.join(student_details_dir, f) for f in os.listdir(
+        student_details_dir) if f.endswith('.csv')]
+    spcc_files = [os.path.join(spcc_dir, f)
+                  for f in os.listdir(spcc_dir) if f.endswith('.csv')]
 
-    csv_files = [os.path.join(csv_dir, f) for f in os.listdir(csv_dir) if f.endswith('.csv')]
-
+    # Loop through each csv file and read it using pandas
     dfs = []
-    for csv_file in csv_files:
+    for csv_file in student_details_files + spcc_files:
         df = pd.read_csv(csv_file)
         dfs.append(df)
 
+    # Concatenate the list of dataframes into a single dataframe
     combined_df = pd.concat(dfs)
 
-    grouped_df = combined_df.groupby(["Enrollment", "Name"]).size().reset_index(name="Count")
+    # Group the dataframe by "Enrollment" and count the number of occurrences of each enrollment
+    grouped_df = combined_df.groupby(
+        "Enrollment").size().reset_index(name="Count")
+
+    # Subtract 1 from the "Count" column
     grouped_df["Count"] = grouped_df["Count"] - 1
 
+    # Merge the enrollment with their names
+    names_df = combined_df[["Enrollment", "Name"]
+                           ].drop_duplicates().set_index("Enrollment")
+
+    # Merge the count and names dataframes
+    result_df = pd.merge(grouped_df, names_df, on="Enrollment")
+
+    # Take user input for the total number of classes that have occurred
     total_classes = int(request.form['total_classes'])
 
-    grouped_df["Total Classes"] = total_classes
-    grouped_df["Percentage"] = grouped_df["Count"] / grouped_df["Total Classes"] * 100
+    # Add a new column "Total Classes" to the dataframe
+    result_df["Total Classes"] = total_classes
 
-    grouped_df.to_csv("attendance_summary_ai.csv", index=False)
+    # Calculate the attendance percentage
+    result_df["Percentage"] = result_df["Count"] / \
+        result_df["Total Classes"] * 100
+
+    # Reorder the columns as per the desired format
+    result_df = result_df[['Enrollment', 'Name',
+                           'Count', 'Total Classes', 'Percentage']]
+
+    # Convert the Enrollment column to integers
+    result_df["Enrollment"] = result_df["Enrollment"].astype(int)
+
+    # Drop the duplicate enrollments to have only one entry per enrollment
+    result_df.drop_duplicates(subset="Enrollment", keep="last", inplace=True)
+
+    # Save the final dataframe as a csv file
+    result_df.to_csv("attendance_summary_ai.csv", index=False)
 
     return redirect('/table2')
 
@@ -243,29 +397,61 @@ def display_table2():
 ############################## MC SUBJECT ################################
 @app.route('/mc', methods=['POST'])
 def mc():
-    attendance_df = pd.DataFrame(columns=["Enrollment", "Name", "Count", "Total Classes", "Percentage"])
+    # Specify the directory path where the csv files are located
+    student_details_dir = "C:/Users/Namrata Narkhede/PycharmProjects/AI-Based Student Monitoring/StudentDetails/"
+    spcc_dir = "C:/Users/Namrata Narkhede/PycharmProjects/AI-Based Student Monitoring/Attendance_management/Attendance/mc/"
 
-    csv_dir = "C:/Users/Namrata Narkhede/PycharmProjects/AI-Based Student Monitoring/Attendance_management/Attendance/mc/"
+    # Get a list of all csv files in the directory
+    student_details_files = [os.path.join(student_details_dir, f) for f in os.listdir(
+        student_details_dir) if f.endswith('.csv')]
+    spcc_files = [os.path.join(spcc_dir, f)
+                  for f in os.listdir(spcc_dir) if f.endswith('.csv')]
 
-    csv_files = [os.path.join(csv_dir, f) for f in os.listdir(csv_dir) if f.endswith('.csv')]
-
+    # Loop through each csv file and read it using pandas
     dfs = []
-    for csv_file in csv_files:
+    for csv_file in student_details_files + spcc_files:
         df = pd.read_csv(csv_file)
         dfs.append(df)
 
+    # Concatenate the list of dataframes into a single dataframe
     combined_df = pd.concat(dfs)
 
-    grouped_df = combined_df.groupby(["Enrollment", "Name"]).size().reset_index(name="Count")
+    # Group the dataframe by "Enrollment" and count the number of occurrences of each enrollment
+    grouped_df = combined_df.groupby(
+        "Enrollment").size().reset_index(name="Count")
+
+    # Subtract 1 from the "Count" column
     grouped_df["Count"] = grouped_df["Count"] - 1
 
+    # Merge the enrollment with their names
+    names_df = combined_df[["Enrollment", "Name"]
+                           ].drop_duplicates().set_index("Enrollment")
+
+    # Merge the count and names dataframes
+    result_df = pd.merge(grouped_df, names_df, on="Enrollment")
+
+    # Take user input for the total number of classes that have occurred
     total_classes = int(request.form['total_classes'])
 
-    grouped_df["Total Classes"] = total_classes
-    grouped_df["Percentage"] = grouped_df["Count"] / grouped_df["Total Classes"] * 100
+    # Add a new column "Total Classes" to the dataframe
+    result_df["Total Classes"] = total_classes
 
-    grouped_df.to_csv("attendance_summary_mc.csv", index=False)
+    # Calculate the attendance percentage
+    result_df["Percentage"] = result_df["Count"] / \
+        result_df["Total Classes"] * 100
 
+    # Convert the Enrollment column to integers
+    result_df["Enrollment"] = result_df["Enrollment"].astype(int)
+
+    # Reorder the columns as per the desired format
+    result_df = result_df[['Enrollment', 'Name',
+                           'Count', 'Total Classes', 'Percentage']]
+
+    # Drop the duplicate enrollments to have only one entry per enrollment
+    result_df.drop_duplicates(subset="Enrollment", keep="last", inplace=True)
+
+    # Save the final dataframe as a csv file
+    result_df.to_csv("attendance_summary_mc.csv", index=False)
     return redirect('/table3')
 
 
@@ -286,7 +472,8 @@ def overall_attendance():
         merged_df = pd.concat([merged_df, df], ignore_index=True)
 
     overall_df = merged_df.groupby(["Enrollment", "Name"]).sum()
-    overall_df["Percentage"] = overall_df["Count"] / overall_df["Total Classes"] * 100
+    overall_df["Percentage"] = overall_df["Count"] / \
+        overall_df["Total Classes"] * 100
 
     overall_df.to_csv("overall_attendance.csv")
 
@@ -311,8 +498,7 @@ def visualize():
         'above_90': {'title': 'Attendance Above 90%', 'condition': data['Percentage'] > 90},
         'below_50': {'title': 'Attendance Below 50%', 'condition': data['Percentage'] <= 50},
         'below_30': {'title': 'Attendance Below 30%', 'condition': data['Percentage'] < 30},
-        'mid_range': {'title': 'Attendance Between 60% and 80%',
-                      'condition': (data['Percentage'] >= 60) & (data['Percentage'] <= 80)}
+        'mid_range': {'title': 'Attendance Between 60% and 80%', 'condition': (data['Percentage'] >= 60) & (data['Percentage'] <= 80)}
     }
 
     # Generate plots for each filter condition
@@ -397,8 +583,9 @@ def send_email1(to_parent_email):
     except:
         print("Error: Unable to send email")
 
-
 # route to check attendance and send email to students and parents
+
+
 @app.route('/send_mail')
 def send_mail():
     overall_attendance_file = 'overall_attendance.csv'
@@ -414,15 +601,15 @@ def send_mail():
                 if student_details_data[j][1] == enrollment:
                     name = student_details_data[j][0]
                     to_email = student_details_data[j][2]
-                    to_parent_email = student_details_data[j][3]  # get parent's email
-                    # send_email(to_email, to_parent_email, name)  # send email to student and parent
-                    send_email(to_email, name)
-                    send_email1(to_parent_email)
-                    sent_students.append(name)  # add student's name to the list
+                    # get parent's email
+                    to_parent_email = student_details_data[j][3]
+                    send_email(to_email, name)  # send email to student
+                    send_email1(to_parent_email)  # send email to parent
+                    # add student's name to the list
+                    sent_students.append(name)
                     break
     return render_template('Email_send.html', students=sent_students)
 
 
 if __name__ == '__main__':
     app.run(debug=True)
-

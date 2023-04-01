@@ -40,47 +40,51 @@
 
       /* Main content styling */
       .main {
-        margin-left: 300px;
-        padding: 20px;
-        font-family: Arial, sans-serif;
-      }
-
+        width: 75%;
+        margin-left: 315px;
+        margin-top:20px;
+        padding: 30px;
+        background-color: #f2f2f2;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #ccc;
+        padding-bottom: 20px;
+        }
       .main h2 {
-        margin-top: 0;
+        margin-top:20px;
       }
-      h1 {
+      .main h1 {
         font-size: 36px;
         text-align: center;
         margin-bottom: 20px;
       }
 
-      h2 {
-        font-size: 24px;
-        margin-top: 40px;
-        margin-bottom: 20px;
-      }
-
       img {
         display: block;
-        max-width: 100%;
-        margin: 0 auto;
+        max-width: 80%;
+        width:50%;
+        margin-left: 100px;
         border: 1px solid #ccc;
         box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
       }
-
-      .button {
+      #logout-btn {
         background-color: #4caf50;
-        border: none;
-        color: white;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 5px;
-      }
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+  
+        #logout-btn:hover {
+        background-color: #555;
+        }
+      
     </style>
   </head>
   <body>
@@ -93,7 +97,7 @@
         <a href="{{ url_for('visualize') }}">Visualize Attendance</a>
         <a href="{{ url_for('send_mail') }}">Send Mail</a>
         <form method="post" action="/logout">
-          <input class="button logout" type="submit" value="Logout" />
+          <input id="logout-btn" class="button logout" type="submit" value="Logout" />
         </form>
       </div>
       <div class="main">
