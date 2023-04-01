@@ -13,9 +13,9 @@ The system uses machine learning algorithms to analyze Student Attendance and Fa
 
 # Installation
 To install the AI-based student monitoring system, follow these steps
-1. Clone the repository to your local machine:
+1. Clone the repository to your local machine:<br>
 git clone https://github.com/namratanarkhede/AI-Based-Student-Monitoring.git
-2. Navigate to the project directory:
+2. Navigate to the project directory:<br>
 cd AI-Based-Student-Monitoring/
 3. Create a virtual environment:
 python3 -m venv env
