@@ -30,5 +30,6 @@ main.py and app.py
 # Usage
 To use the system, simply log in to the interactive dashboard using your credentials. From there, you can view data of student, real-time attendance, student attendance performance. You can also customize notifications and alerts to receive updates on any potential issues.
 
-#UI
+# UI
+
 ![mainpage](https://user-images.githubusercontent.com/78205518/229305875-0f7e5e12-ff0d-400a-9994-7c6501d0e6de.png)
