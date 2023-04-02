@@ -32,27 +32,35 @@ To use the system, simply log in to the interactive dashboard using your credent
 
 # UI
 1. Main Page 
-![mainpage](https://user-images.githubusercontent.com/78205518/229305875-0f7e5e12-ff0d-400a-9994-7c6501d0e6de.png)
+![1](https://user-images.githubusercontent.com/78205518/229366475-d6be781c-12ff-4fc6-8007-1f4ccc041c6f.png)
 
 2. Take Image
+![2](https://user-images.githubusercontent.com/78205518/229366476-395c4ba2-d4b6-42f4-94f6-c3ccf069497d.png)
 
 3. Face Recognition Based attendance 
-
-![fillAttendanceModule](https://user-images.githubusercontent.com/78205518/229306786-a3ca393a-61bc-475c-a309-b68333f1f34e.png)
+![3](https://user-images.githubusercontent.com/78205518/229366477-7839b838-8aa3-427a-9200-9fc92683c870.png) ![4](https://user-images.githubusercontent.com/78205518/229366480-51c09585-5e63-48cf-804a-e6c45305b5e8.png)
 
 4. Web-App page 
-![appModule](https://user-images.githubusercontent.com/78205518/229306794-c94277c8-ccfc-4a9c-a87e-869e6e257dbd.png)
+![5](https://user-images.githubusercontent.com/78205518/229366481-c4840271-794c-4313-8eda-e7c940f6d4cc.png)
 
 5. Student Form Page 
+![5 1](https://user-images.githubusercontent.com/78205518/229366485-4f08826c-42a4-40f0-a515-7f2366a6ad82.png)
 
-6. Admin Page 
+6. Admin Page
+![6](https://user-images.githubusercontent.com/78205518/229366486-fa908488-5058-488b-ae0f-5e076ee0cf55.png)
 
 7. Subject_wise Attedance Page 
+![7](https://user-images.githubusercontent.com/78205518/229366488-b3101970-71c9-4448-a56a-e0950e3e9ea7.png) ![8](https://user-images.githubusercontent.com/78205518/229366491-ded9ec13-4691-4ea8-ac86-100cdfad2522.png)
 
 8. Overall Attendance Page 
+![9](https://user-images.githubusercontent.com/78205518/229366465-59d80432-069d-489e-8f8b-4beb7cdf2ea9.png)
 
 9. Visualize Attendance Page 
+![10](https://user-images.githubusercontent.com/78205518/229366469-9e9b79a8-d27e-42cd-8d00-4735ec5eb109.png)
 
 10. Send Email Page 
+![11](https://user-images.githubusercontent.com/78205518/229366472-a7843fc1-ff22-44aa-ba0d-8c85d44d3beb.png)
+
+
 
 
