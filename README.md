@@ -44,10 +44,10 @@ To use the system, simply log in to the interactive dashboard using your credent
 ![5](https://user-images.githubusercontent.com/78205518/229366481-c4840271-794c-4313-8eda-e7c940f6d4cc.png)
 
 5. Student Form Page 
-![5 1](https://user-images.githubusercontent.com/78205518/229366485-4f08826c-42a4-40f0-a515-7f2366a6ad82.png)
+![5 1](https://user-images.githubusercontent.com/78205518/229368791-6b68e940-89df-477a-a044-20b13ae710cd.png)
 
 6. Admin Page
-![6](https://user-images.githubusercontent.com/78205518/229366486-fa908488-5058-488b-ae0f-5e076ee0cf55.png)
+![6](https://user-images.githubusercontent.com/78205518/229368788-fe59fb18-04d4-4994-90ef-44f90cbc6d53.png)
 
 7. Subject_wise Attedance Page 
 ![7](https://user-images.githubusercontent.com/78205518/229366488-b3101970-71c9-4448-a56a-e0950e3e9ea7.png) ![8](https://user-images.githubusercontent.com/78205518/229366491-ded9ec13-4691-4ea8-ac86-100cdfad2522.png)
@@ -60,6 +60,7 @@ To use the system, simply log in to the interactive dashboard using your credent
 
 10. Send Email Page 
 ![11](https://user-images.githubusercontent.com/78205518/229366472-a7843fc1-ff22-44aa-ba0d-8c85d44d3beb.png)
+
 
 
 
