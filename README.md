@@ -33,21 +33,26 @@ To use the system, simply log in to the interactive dashboard using your credent
 # UI
 1. Main Page 
 ![mainpage](https://user-images.githubusercontent.com/78205518/229305875-0f7e5e12-ff0d-400a-9994-7c6501d0e6de.png)
-2. Face Recognition Based attendance 
-![fillAttendanceModule](https://user-images.githubusercontent.com/78205518/229306786-a3ca393a-61bc-475c-a309-b68333f1f34e.png)
-3. Web-App page 
-![appModule](https://user-images.githubusercontent.com/78205518/229306794-c94277c8-ccfc-4a9c-a87e-869e6e257dbd.png)
-4. Student Form Page 
 
-5. Admin Page 
-![AdminModule](https://user-images.githubusercontent.com/78205518/229307276-a2ae4bd5-5f04-4ccb-88d2-bce63287d496.png)
-6. Subject_wise Attedance Page 
-![Subject_wise Attedance Module](https://user-images.githubusercontent.com/78205518/229306817-5bf366b3-c0fc-4ec6-9e79-fbaeda3ea810.png)
-![Subject-Wise AttendaneModule](https://user-images.githubusercontent.com/78205518/229306819-b033fbdd-1a44-4b9c-aaa0-9530f43c0e2e.png)
-7. Overall Attendance Page 
-![OverallAttendance Module](https://user-images.githubusercontent.com/78205518/229306828-e1972687-6ce2-48c5-ac85-7fe983b5e1da.png)
-8. Visualize Attendance Page 
-![VisulizeModule](https://user-images.githubusercontent.com/78205518/229306840-3286b08f-b788-43a8-a7e0-dc1469a7744f.png)
-9. Send Email Page 
-![EmailSend Module](https://user-images.githubusercontent.com/78205518/229306842-eefbdbb8-39ef-44ea-a03f-58e71fe52061.png)
+2. Take Image
+
+3. Face Recognition Based attendance 
+
+![fillAttendanceModule](https://user-images.githubusercontent.com/78205518/229306786-a3ca393a-61bc-475c-a309-b68333f1f34e.png)
+
+4. Web-App page 
+![appModule](https://user-images.githubusercontent.com/78205518/229306794-c94277c8-ccfc-4a9c-a87e-869e6e257dbd.png)
+
+5. Student Form Page 
+
+6. Admin Page 
+
+7. Subject_wise Attedance Page 
+
+8. Overall Attendance Page 
+
+9. Visualize Attendance Page 
+
+10. Send Email Page 
+
 
