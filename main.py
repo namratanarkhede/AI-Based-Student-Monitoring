@@ -65,7 +65,7 @@ def err_screen1():
     Button(sc2, text='OK', command=del_sc2, fg="black", bg="lawn green", width=9,
            height=1, activebackground="Red", font=('times', 15, ' bold ')).place(x=90, y=50)
 
-# For take images for datasets
+# For take static for datasets
 
 
 def take_img():
@@ -443,7 +443,7 @@ def getImagesAndLabels(path):
     faceSamples = []
     # create empty ID list
     Ids = []
-    # now looping through all the image paths and loading the Ids and the images
+    # now looping through all the image paths and loading the Ids and the static
     for imagePath in imagePaths:
         # loading the image and converting it to gray scale
         pilImage = Image.open(imagePath).convert('L')
