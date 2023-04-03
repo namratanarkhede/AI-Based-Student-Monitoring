@@ -35,10 +35,10 @@ To use the system, simply log in to the interactive dashboard using your credent
 ![1](https://user-images.githubusercontent.com/78205518/229366475-d6be781c-12ff-4fc6-8007-1f4ccc041c6f.png)
 
 2. Take Image
-![2](https://user-images.githubusercontent.com/78205518/229366476-395c4ba2-d4b6-42f4-94f6-c3ccf069497d.png)
+![2](https://user-images.githubusercontent.com/78205518/229416497-ec3762b0-4dfa-4a9e-b95e-aa2211420b4c.png)
 
 3. Face Recognition Based attendance 
-![3](https://user-images.githubusercontent.com/78205518/229366477-7839b838-8aa3-427a-9200-9fc92683c870.png) ![4](https://user-images.githubusercontent.com/78205518/229366480-51c09585-5e63-48cf-804a-e6c45305b5e8.png)
+![3](https://user-images.githubusercontent.com/78205518/229416491-72c87c15-da36-48f5-939d-165ac4d2cf35.png) ![4](https://user-images.githubusercontent.com/78205518/229366480-51c09585-5e63-48cf-804a-e6c45305b5e8.png)
 
 4. Web-App page 
 ![5](https://user-images.githubusercontent.com/78205518/229366481-c4840271-794c-4313-8eda-e7c940f6d4cc.png)
