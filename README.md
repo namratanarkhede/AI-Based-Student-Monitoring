@@ -59,7 +59,8 @@ To use the system, simply log in to the interactive dashboard using your credent
 ![10](https://user-images.githubusercontent.com/78205518/229366469-9e9b79a8-d27e-42cd-8d00-4735ec5eb109.png)
 
 10. Send Email Page 
-![11](https://user-images.githubusercontent.com/78205518/229366472-a7843fc1-ff22-44aa-ba0d-8c85d44d3beb.png)
+![11](https://user-images.githubusercontent.com/78205518/229885556-c84d36cb-56a7-4ccc-9e5f-05ea2943beeb.png)
+
 
 
 
