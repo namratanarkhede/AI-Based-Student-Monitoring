@@ -41,7 +41,7 @@ To use the system, simply log in to the interactive dashboard using your credent
 ![3](https://user-images.githubusercontent.com/78205518/229416491-72c87c15-da36-48f5-939d-165ac4d2cf35.png) ![4](https://user-images.githubusercontent.com/78205518/229366480-51c09585-5e63-48cf-804a-e6c45305b5e8.png)
 
 4. Web-App page 
-![5](https://user-images.githubusercontent.com/78205518/229366481-c4840271-794c-4313-8eda-e7c940f6d4cc.png)
+![5](https://user-images.githubusercontent.com/78205518/229884879-85a9ffc9-8796-4c45-a2f4-2cc8c8e51b36.png)
 
 5. Student Form Page 
 ![5 1](https://user-images.githubusercontent.com/78205518/229368791-6b68e940-89df-477a-a044-20b13ae710cd.png)
