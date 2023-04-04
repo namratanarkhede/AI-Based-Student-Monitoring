@@ -543,8 +543,8 @@ def read_csv(file_path):
 
 
 def send_email(to_email, name):
-    from_email = '20102106.namratanarkhede@gmail.com'
-    password = 'sddcqaiaatzhgydz'
+    from_email = '[Your_Email]'
+    password = '[Your_Generated_Key]'
     subject = 'Low Attendance Alert'
     message = f"Dear {name},\n\nYour attendance percentage is below 75%.\n\nPlease make sure to attend all classes.\n\nThanks & Regards,\nAPSIT"
     msg = MIMEMultipart()
@@ -564,8 +564,8 @@ def send_email(to_email, name):
 
 
 def send_email1(to_parent_email):
-    from_email = '20102106.namratanarkhede@gmail.com'
-    password = 'sddcqaiaatzhgydz'
+    from_email = '[Your_Email]'
+    password = '[Your_Generated_Key]'
     subject = 'Low Attendance Alert'
     message = f"Dear parent ,\n\nYour ward's attendance percentage is below 75%.\n\nPlease make sure that he/she  attend all classes.\n\nThanks & Regards,\nAPSIT"
     msg = MIMEMultipart()
