@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>AI-based Student Monitoring</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
       /* General styles */
       * {
@@ -113,7 +114,7 @@
         }
       }
 
-      .container {
+      #ourteam {
         max-width: 100%%;
         margin: 0 auto;
         padding: 20px;
@@ -164,6 +165,19 @@
         color: #333;
     }
 
+.member a {
+  color: #000;
+  margin-right: 10px;
+}
+
+.member a:hover {
+  color: #0077b5; /* linkedin */
+}
+
+.fab {
+  font-size: 20px;
+  margin-right: 5px;
+}
 
 
     .footer {
@@ -198,7 +212,7 @@
       <nav>
         <ul>
           <li><a href="{{ url_for('home') }}">Home</a></li>
-          <li><a href="{{ url_for('home') }}">About Us</a></li>
+          <li><a href="#ourteam">About Us</a></li>
           <li><a href="{{ url_for('studentform') }}">Student Form</a></li>
           {% if session.admin_logged_in %}
           <li><a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a></li>
@@ -225,28 +239,43 @@
       </p></br></br>
     </div>
     </main>
-    <div class="container">
+    <div id="ourteam">
       <h1>Our Team</h1>
       <div class="team">
         <div class="member">
-          <img src="/static/namrata.jpg" alt="Member 1">
-          <h3>Namrata Narkhede</h3>
-          <p>APSIT | TE</p>
-        </div>
+        <img src="/static/namrata.jpg" alt="Member 1">
+        <h3>Namrata Narkhede</h3>
+        <p>APSIT | TE</p></br>
+        <a href="https://www.linkedin.com/in/namrata-narkhede-957a5724a" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/namratanarkhede" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:namratanarkhede10@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
         <div class="member">
           <img src="/static/namrata.jpg" alt="Member 2">
           <h3>Anupama Menon</h3>
           <p>APSIT | TE</p>
+          </br>
+        <a href="https://www.linkedin.com/in/namrata-narkhede-957a5724a" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/namratanarkhede" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:namratanarkhede10@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
         <div class="member">
           <img src="/static/namrata.jpg" alt="Member 3">
           <h3>Sayali Nikam</h3>
           <p>APSIT | TE</p>
+          </br>
+        <a href="https://www.linkedin.com/in/namrata-narkhede-957a5724a" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/namratanarkhede" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:namratanarkhede10@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
         <div class="member">
           <img src="/static/namrata.jpg" alt="Member 4">
           <h3>Itisha Mathane</h3>
           <p>APSIT | TE</p>
+          </br>
+        <a href="https://www.linkedin.com/in/namrata-narkhede-957a5724a" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/namratanarkhede" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:namratanarkhede10@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
       </div>
     </div>
